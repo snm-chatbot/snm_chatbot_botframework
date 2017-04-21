@@ -163,80 +163,74 @@ module.exports = function(controller) {
     });
 
     controller.hears(['p[rř]edstav se', 'kdo jsi', 'jak se jmenuje[sš]'], 'message_received', function(bot, message) {
-        bot.startTyping(message, function () {
-            var gif = {
-                attachments: [
-                    {
-                        contentType: 'application/vnd.microsoft.card.animation',
-                        content: {
-                            media: [{ url: 'https://media.giphy.com/media/gf6iP1NIcDk7S/giphy.gif', profile: "animation" }],
-                            autoloop: true,
-                            autostart: true
-                        }
+        var gif = {
+            attachments: [
+                {
+                    contentType: 'application/vnd.microsoft.card.animation',
+                    content: {
+                        media: [{ url: 'https://media.giphy.com/media/gf6iP1NIcDk7S/giphy.gif', profile: "animation" }],
+                        autoloop: true,
+                        autostart: true
                     }
-                ]
-            };
-            bot.reply(message,
-                'Jsem Lev Manovich a jsem první bot Stunome. ' +
-                'Ptát se mě můžeš na cokoliv ohledně studia, když nebudu vědět odpověď, ' +
-                'pošlu ti gif se smutýma koťátkama.');
+                }
+            ]
+        };
+        bot.reply(message,
+            'Jsem Lev Manovich a jsem první bot Stunome. ' +
+            'Ptát se mě můžeš na cokoliv ohledně studia, když nebudu vědět odpověď, ' +
+            'pošlu ti gif se smutýma koťátkama.');
+        bot.reply(message, gif);
+    });
+
+    controller.hears(['^d[ií]k', '^d[eě]kuju', 'danke', 'thanks', 'thx'], 'message_received', function(bot, message) {
+        giphy.random('np', function (err, res) {
+            if (res.data.id) {
+                var gif = {
+                    attachments: [
+                        {
+                            contentType: 'application/vnd.microsoft.card.animation',
+                            content: {
+                                media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                autoloop: true,
+                                autostart: true
+                            }
+                        }
+                    ]
+                };
+            }
+            var responses = [
+                'nz',
+                'Nemáš zač',
+                'Nemáš zač',
+                'Nemáš zač',
+                'V pohodě',
+                'Jasně',
+                '👍'
+            ];
+            var response = responses[Math.floor(Math.random() * responses.length)];
+            bot.reply(message, response);
             bot.reply(message, gif);
         });
     });
 
-    controller.hears(['^d[ií]k', '^d[eě]kuju', 'danke', 'thanks', 'thx'], 'message_received', function(bot, message) {
-        bot.startTyping(message, function () {
-            giphy.random('np', function (err, res) {
-                if (res.data.id) {
-                    var gif = {
-                        attachments: [
-                            {
-                                contentType: 'application/vnd.microsoft.card.animation',
-                                content: {
-                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
-                                    autoloop: true,
-                                    autostart: true
-                                }
-                            }
-                        ]
-                    };
-                }
-                var responses = [
-                    'nz',
-                    'Nemáš zač',
-                    'Nemáš zač',
-                    'Nemáš zač',
-                    'V pohodě',
-                    'Jasně',
-                    '👍'
-                ];
-                var response = responses[Math.floor(Math.random() * responses.length)];
-                bot.reply(message, response);
-                bot.reply(message, gif);
-            });
-        });
-    });
-
     controller.hears(['^tak ahoj', '^tak [cč]au', '^sbohem', '^m[eě]j se', '^pa'], 'message_received', function(bot, message) {
-        bot.startTyping(message, function () {
-            giphy.random('bye', function (err, res) {
-                if (res.data.id) {
-                    var gif = {
-                        attachments: [
-                            {
-                                contentType: 'application/vnd.microsoft.card.animation',
-                                content: {
-                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
-                                    autoloop: true,
-                                    autostart: true
-                                }
+        giphy.random('bye', function (err, res) {
+            if (res.data.id) {
+                var gif = {
+                    attachments: [
+                        {
+                            contentType: 'application/vnd.microsoft.card.animation',
+                            content: {
+                                media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                autoloop: true,
+                                autostart: true
                             }
-                        ]
-                    };
-                }
-                bot.reply(message, 'Ahoj! Přijď si zase někdy pokecat!');
-                bot.reply(message, gif);
-            });
+                        }
+                    ]
+                };
+            }
+            bot.reply(message, 'Ahoj! Přijď si zase někdy pokecat!');
+            bot.reply(message, gif);
         });
     });
 
