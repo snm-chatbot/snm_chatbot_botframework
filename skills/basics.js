@@ -3,13 +3,38 @@ var giphy = require('giphy-api')();
 
 module.exports = function(controller) {
 
-    controller.hears(['^ahoj', '^[cč]au', '^zdravim', '^nazdar', '^hoj', '^get started'], 'message_received,facebook_postback', function(bot, message) {
+
+    controller.hears(['^ahoj', '^[cč]au', '^zdravim', '^nazdar', '^hoj', '^get started'], 'message_received', function(bot, message) {
+
+        var messageContent = 'Ahoj.'
         controller.storage.users.get(message.user, function(err, user) {
             if (user && user.name) {
-                bot.reply(message, 'Ahoj ' + user.name + '!!');
-            } else {
-                bot.reply(message, 'Ahoj.');
+                messageContent = 'Ahoj ' + user.name + '!!';
             }
+        });
+        bot.startConversation(message,function(err,convo) {
+
+            giphy.random('cat', function (err, res) {
+                if (res.data.id) {
+                    var gif = {
+                        attachments: [
+                            {
+                                contentType: 'application/vnd.microsoft.card.animation',
+                                content: {
+                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                    autoloop: true,
+                                    autostart: true
+                                }
+                            }
+                        ]
+                    };
+                }
+                convo.say(messageContent);
+                convo.say(gif);
+            });
+
+            convo.next();
+
         });
     });
 
@@ -24,7 +49,7 @@ module.exports = function(controller) {
         bot.startConversation(message, askUser);
     });
 
-    controller.hears(['^hi', '^hello', 'how are you'], 'message_received,facebook_postback', function(bot, message) {
+    controller.hears(['^hi', '^hello', 'how are you'], 'message_received', function(bot, message) {
         bot.reply(message, 'Mluv prosimtě česky, jo?');
     });
 
@@ -140,12 +165,16 @@ module.exports = function(controller) {
     controller.hears(['p[rř]edstav se', 'kdo jsi', 'jak se jmenuje[sš]'], 'message_received', function(bot, message) {
         bot.startTyping(message, function () {
             var gif = {
-                'attachment': {
-                    'type': 'image',
-                    'payload': {
-                        'url': 'https://media.giphy.com/media/gf6iP1NIcDk7S/giphy.gif',
+                attachments: [
+                    {
+                        contentType: 'application/vnd.microsoft.card.animation',
+                        content: {
+                            media: [{ url: 'https://media.giphy.com/media/gf6iP1NIcDk7S/giphy.gif', profile: "animation" }],
+                            autoloop: true,
+                            autostart: true
+                        }
                     }
-                }
+                ]
             };
             bot.reply(message,
                 'Jsem Lev Manovich a jsem první bot Stunome. ' +
@@ -160,12 +189,16 @@ module.exports = function(controller) {
             giphy.random('np', function (err, res) {
                 if (res.data.id) {
                     var gif = {
-                        'attachment': {
-                            'type': 'image',
-                            'payload': {
-                                'url': res.data.fixed_height_downsampled_url
+                        attachments: [
+                            {
+                                contentType: 'application/vnd.microsoft.card.animation',
+                                content: {
+                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                    autoloop: true,
+                                    autostart: true
+                                }
                             }
-                        }
+                        ]
                     };
                 }
                 var responses = [
@@ -189,12 +222,16 @@ module.exports = function(controller) {
             giphy.random('bye', function (err, res) {
                 if (res.data.id) {
                     var gif = {
-                        'attachment': {
-                            'type': 'image',
-                            'payload': {
-                                'url': res.data.fixed_height_downsampled_url
+                        attachments: [
+                            {
+                                contentType: 'application/vnd.microsoft.card.animation',
+                                content: {
+                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                    autoloop: true,
+                                    autostart: true
+                                }
                             }
-                        }
+                        ]
                     };
                 }
                 bot.reply(message, 'Ahoj! Přijď si zase někdy pokecat!');

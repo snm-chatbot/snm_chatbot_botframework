@@ -112,31 +112,23 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     });
 });
 
-var giphy = require('giphy-api')();
+///////////////////////////////
+// START OF THE CONVERSATION //
+///////////////////////////////
 
-controller.hears(['^ahoj', '^[cč]au', '^zdravim', '^nazdar', '^hoj', '^get started'], 'message_received', function(bot, message) {
-    bot.startConversation(message,function(err,convo) {
+// BASIC
+// Always first
+require('./skills/basics')(controller);
 
-        giphy.random('cat', function (err, res) {
-            if (res.data.id) {
-                var gif = {
-                    attachments: [
-                        {
-                            contentType: 'application/vnd.microsoft.card.animation',
-                            content: {
-                                media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
-                                autoloop: true,
-                                autostart: true
-                            }
-                        }
-                    ]
-                };
-            }
-            convo.say('Ahoj.');
-            convo.say(gif);
-        });
+// PROCEDURAL
+// require('./skills/harmonogram')(controller);
+require('./skills/school')(controller);
+// require('./skills/prijimaci-rizeni')(controller);
 
-        convo.next();
+// GIFS
+// giphy, gif
+require('./skills/fun')(controller);
 
-    });
-});
+// FALLBACK
+// Always last
+require('./skills/fallback')(controller);

@@ -6,12 +6,16 @@ module.exports = function(controller) {
             giphy.random('idk', function (err, res) {
                 if (res.data.id) {
                     var gif = {
-                        'attachment': {
-                            'type': 'image',
-                            'payload': {
-                                'url': res.data.fixed_height_downsampled_url
+                        attachments: [
+                            {
+                                contentType: 'application/vnd.microsoft.card.animation',
+                                content: {
+                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                    autoloop: true,
+                                    autostart: true
+                                }
                             }
-                        }
+                        ]
                     };
                 }
                 var responses = [

@@ -8,12 +8,16 @@ module.exports = function(controller) {
                 var gifmessage = 'Tak to fakt nevím, sorry jako.';
                 if (res.data.id) {
                     gifmessage = {
-                        'attachment': {
-                            'type': 'image',
-                            'payload': {
-                                'url': res.data.fixed_height_downsampled_url
+                        attachments: [
+                            {
+                                contentType: 'application/vnd.microsoft.card.animation',
+                                content: {
+                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                    autoloop: true,
+                                    autostart: true
+                                }
                             }
-                        }
+                        ]
                     };
                 }
                 bot.reply(message, gifmessage);
