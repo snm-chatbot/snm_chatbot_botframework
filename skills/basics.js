@@ -6,22 +6,22 @@ module.exports = function(controller) {
 
     controller.hears(['^ahoj', '^[cč]au', '^zdravim', '^nazdar', '^hoj', '^get started'], 'message_received', function(bot, message) {
 
-        var messageContent = 'Ahoj.'
+        var messageContent = 'Ahoj.';
         controller.storage.users.get(message.user, function(err, user) {
             if (user && user.name) {
                 messageContent = 'Ahoj ' + user.name + '!!';
             }
         });
-        bot.startConversation(message,function(err,convo) {
+        bot.startConversation(message, function(err, convo) {
 
-            giphy.random('cat', function (err, res) {
+            giphy.random('cat', function(err, res) {
                 if (res.data.id) {
                     var gif = {
                         attachments: [
                             {
                                 contentType: 'application/vnd.microsoft.card.animation',
                                 content: {
-                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                    media: [{ url: res.data.fixed_height_downsampled_url, profile: 'animation' }],
                                     autoloop: true,
                                     autostart: true
                                 }
@@ -38,7 +38,7 @@ module.exports = function(controller) {
         });
     });
 
-    controller.hears(['jak je\\?', 'jak se m[aá][sš]', 'jak se da[rř][ií]', '^jaksemas'], 'message_received', function(bot,message) {
+    controller.hears(['jak je\\?', 'jak se m[aá][sš]', 'jak se da[rř][ií]', '^jaksemas'], 'message_received', function(bot, message) {
         var askUser = function(err, convo) {
             convo.ask('U mě dobrý. Co u tebe?', function(response, convo) {
                 convo.say('Cool cool cool.');
@@ -162,35 +162,56 @@ module.exports = function(controller) {
         });
     });
 
-    controller.hears(['p[rř]edstav se', 'kdo jsi', 'jak se jmenuje[sš]'], 'message_received', function(bot, message) {
+    controller.hears(['p[rř]edstav se', 'kdo j*si', 'jak se jmenuje[sš]'], 'message_received', function(bot, message) {
         var gif = {
             attachments: [
                 {
                     contentType: 'application/vnd.microsoft.card.animation',
                     content: {
-                        media: [{ url: 'https://media.giphy.com/media/gf6iP1NIcDk7S/giphy.gif', profile: "animation" }],
+                        media: [{ url: 'https://media.giphy.com/media/gf6iP1NIcDk7S/giphy.gif', profile: 'animation' }],
                         autoloop: true,
                         autostart: true
                     }
                 }
             ]
         };
-        bot.reply(message,
-            'Jsem Lev Manovich a jsem první bot Stunome. ' +
-            'Ptát se mě můžeš na cokoliv ohledně studia, když nebudu vědět odpověď, ' +
-            'pošlu ti gif se smutýma koťátkama.');
+        var help = {
+            attachments: [
+                {
+                    contentType: 'application/vnd.microsoft.card.hero',
+                    content: {
+                        buttons: [
+                            {
+                                type: 'postBack',
+                                title: 'potřebuji pomoct',
+                                value: 'help'
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
         bot.reply(message, gif);
+        setTimeout(function() {
+            bot.reply(message,
+                'Jsem lev 🦁 zvaný Manovich a jsem první bot StuNoMe. ' +
+                'Ptát se mě můžeš na cokoliv ohledně studia, když nebudu vědět odpověď, ' +
+                'pošlu ti gif se smutýma koťátkama. A pokud na tom budeš hodně špatně, tak si klikni o "pomoc".');
+            setTimeout(function() {
+                bot.reply(message, help);
+            }, 2000);
+        }, 2000);
     });
 
     controller.hears(['^d[ií]k', '^d[eě]kuju', 'danke', 'thanks', 'thx'], 'message_received', function(bot, message) {
-        giphy.random('np', function (err, res) {
+        giphy.random('np', function(err, res) {
             if (res.data.id) {
                 var gif = {
                     attachments: [
                         {
                             contentType: 'application/vnd.microsoft.card.animation',
                             content: {
-                                media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                media: [{ url: res.data.fixed_height_downsampled_url, profile: 'animation' }],
                                 autoloop: true,
                                 autostart: true
                             }
@@ -214,14 +235,14 @@ module.exports = function(controller) {
     });
 
     controller.hears(['^tak ahoj', '^tak [cč]au', '^sbohem', '^m[eě]j se', '^pa'], 'message_received', function(bot, message) {
-        giphy.random('bye', function (err, res) {
+        giphy.random('bye', function(err, res) {
             if (res.data.id) {
                 var gif = {
                     attachments: [
                         {
                             contentType: 'application/vnd.microsoft.card.animation',
                             content: {
-                                media: [{ url: res.data.fixed_height_downsampled_url, profile: "animation" }],
+                                media: [{ url: res.data.fixed_height_downsampled_url, profile: 'animation' }],
                                 autoloop: true,
                                 autostart: true
                             }
@@ -236,12 +257,12 @@ module.exports = function(controller) {
 
     controller.hears(['uptime'], 'message_received', function(bot, message) {
 
-            var hostname = os.hostname();
-            var uptime = formatUptime(process.uptime());
+        var hostname = os.hostname();
+        var uptime = formatUptime(process.uptime());
 
-            bot.reply(message,
-                ':|] Jsem bot a běžím už ' + uptime + ' na ' + hostname + '.');
-        });
+        bot.reply(message,
+            ':|] Jsem bot a běžím už ' + uptime + ' na ' + hostname + '.');
+    });
 
     controller.hears('^ping', function(bot, message) {
         bot.reply(message, 'pong');
