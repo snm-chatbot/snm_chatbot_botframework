@@ -128,6 +128,9 @@ require('./skills/statnice')(controller);
 require('./skills/studijni-plan')(controller);
 require('./skills/lide')(controller);
 
+// THESIS
+require('./skills/thesis')(controller);
+
 // GIFS
 // giphy, gif
 require('./skills/fun')(controller);
