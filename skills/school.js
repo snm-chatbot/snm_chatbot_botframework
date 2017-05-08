@@ -1,5 +1,6 @@
 module.exports = function(controller) {
     controller.hears('rozvrh', 'message_received', function(bot, message) {
+        bot.reply(message, { type: "typing" });
         bot.reply(message, 'Here you go! 👉 http://novamedia.ff.cuni.cz/studium/rozvrh-harmonogram-semestru/');
     });
 
