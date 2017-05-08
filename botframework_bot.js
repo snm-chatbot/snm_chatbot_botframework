@@ -125,6 +125,9 @@ require('./skills/basics')(controller);
 require('./skills/school')(controller);
 // require('./skills/prijimaci-rizeni')(controller);
 
+// THESIS
+require('./skills/thesis')(controller);
+
 // GIFS
 // giphy, gif
 require('./skills/fun')(controller);
