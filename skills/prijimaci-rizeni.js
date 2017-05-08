@@ -6,7 +6,7 @@ module.exports = function(controller) {
   });
 
   controller.hears(['kdy .* p[rř]ij[ií]ma[čc]ky'], 'message_received', function(bot, message) {
-      bot.reply(message, 'Přijimačky jsou 17. června v 9:00, tak nezaspi!');
+      bot.reply(message, 'Přijímačky jsou 17. června v 9:00, tak nezaspi!');
   });
 
   controller.hears(['bod[uůy] .* test'], 'message_received', function(bot, message) {
