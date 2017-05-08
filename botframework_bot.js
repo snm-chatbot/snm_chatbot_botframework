@@ -123,7 +123,10 @@ require('./skills/basics')(controller);
 // PROCEDURAL
 // require('./skills/harmonogram')(controller);
 require('./skills/school')(controller);
-// require('./skills/prijimaci-rizeni')(controller);
+require('./skills/prijimaci-rizeni')(controller);
+require('./skills/statnice')(controller);
+require('./skills/studijni-plan')(controller);
+require('./skills/lide')(controller);
 
 // THESIS
 require('./skills/thesis')(controller);
