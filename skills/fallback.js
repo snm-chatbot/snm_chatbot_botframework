@@ -84,8 +84,8 @@ module.exports = function(controller) {
                 ]
             };
             bot.reply(message, gif);
+            bot.reply(message, response + ' Zkus něco jiného nebo se podívej, co všechno umím...');
             setTimeout(function() {
-                bot.reply(message, response + ' Zkus něco jiného nebo se podívej, co všechno umím...');
                 bot.reply(message, help);
             }, 2000);
             return false;
