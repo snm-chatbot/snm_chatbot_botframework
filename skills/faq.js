@@ -24,11 +24,11 @@ module.exports = function(controller) {
         }, 2000);
     });
     //odevzdání diplomky
-    controller.hears(['(?=.*kdy)(?=.*odevzdat)' +
+    controller.hears(['(?=.*(kdy|komu|kam|kde))(?=.*odevzdat)' +
     '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'Elektronicky a následně i ve dvou tištěných svázaných shodných kopiích na sekretariátu ÚISK,' +
+            bot.reply(message, 'Elektronicky v SISu a následně i ve dvou tištěných svázaných shodných kopiích na sekretariátu ÚISK,' +
                 ' nejpozději 30 dní před prvním dnem státních závěrečných zkoušek základní součásti.' +
                 ' Aktuální termíny pro odevzdání diplomky najdeš tady 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
