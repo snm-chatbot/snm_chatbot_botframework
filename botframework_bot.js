@@ -116,22 +116,23 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 // START OF THE CONVERSATION //
 ///////////////////////////////
 
-// BASIC
-// Always first
+// BASIC -- Always first!!!
 require('./skills/basics')(controller);
 
-// PROCEDURAL
-// require('./skills/harmonogram')(controller);
-require('./skills/school')(controller);
+// SKILLS order based on https://goo.gl/Iew9Oc
+require('./skills/faq')(controller);
+require('./skills/harmonogram')(controller);
 require('./skills/prijimaci-rizeni')(controller);
 require('./skills/statnice')(controller);
+require('./skills/thesis')(controller);
 require('./skills/studijni-plan')(controller);
+require('./skills/erasmus')(controller);
+require('./skills/second_language')(controller);
+require('./skills/school')(controller);
 require('./skills/lide')(controller);
 
 // GIFS
-// giphy, gif
 require('./skills/fun')(controller);
 
-// FALLBACK
-// Always last
+// FALLBACK - Always last!!!
 require('./skills/fallback')(controller);
