@@ -11,12 +11,12 @@ module.exports = function(controller) {
                         title: 'Umím odpovědět na otázky ohledně:',
                         items: [
                             {
-                                title: 'Přijímacího řízení',
-                                subtitle: 'přihláška, přijímačky, atd.'
-                            },
-                            {
                                 title: 'Harmonogramu',
                                 subtitle: 'důležité termíny, rozvrh. atd.'
+                            },
+                            {
+                                title: 'Přijímacího řízení',
+                                subtitle: 'přihláška, přijímačky, atd.'
                             },
                             {
                                 title: 'Státnic',
@@ -27,12 +27,24 @@ module.exports = function(controller) {
                                 subtitle: 'termíny, témata, atd.'
                             },
                             {
+                                title: 'Studijního plánu',
+                                subtitle: 'plán studia, informace o předmětech, atd.'
+                            },
+                            {
+                                title: 'Studia v zahraničí',
+                                subtitle: 'Erasmus, studium mimo Evropu, atd.'
+                            },
+                            {
                                 title: 'Lidech na stunome',
                                 subtitle: 'vyučující, studenti, atd.'
                             },
                             {
+                                title: 'A spousta dalšího...',
+                                subtitle: 'praxe, blogy, kontakty, facebooky, atd.'
+                            },
+                            {
                                 title: 'Bonus navíc - umím gify',
-                                subtitle: 'zkus napsat gif + co tě napadne (anglicky) a uvidíš ;)'
+                                subtitle: 'zkus napsat gif + co tě napadne (anglicky) a uvidíš 🦄'
                             }
                         ]
                     }
