@@ -1,154 +1,106 @@
 module.exports = function(controller) {
-
-    //------------------------------------------------
-    //--------------DIPLOMKA - ZADÁNÍ-----------------
-    //------------------------------------------------
-    //odevzdání zadání - do kdy
-    controller.hears(['(?=.*kdy)(?=.*odevzdat)(?=.*zad[aá]n[ií])' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))*'], 'message_received', function(bot, message) {
+    //odevzdání zadání - do kdy, komu
+    controller.hears('(?=.*kdy|komu|kam|kde)(?=.*odevzdat)(?=.*zad[aá]n[ií])', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'odevzdání zadání do kdy');
+            bot.reply(message, 'Vypracované zadání diplomky odevzdej vedoucímu oboru a tajemníkovi oboru vždy k jednomu ze tří termínů:' +
+                '<br>📅 1. září,<br>📅 1. leden,<br>📅 1. května.<br>Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
     });
-
-    //odevzdání zadání - komu
-    controller.hears(['(?=.*(komu|kam|kde))(?=.*odevzdat)(?=.*zad[aá]n[ií])' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))*'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'odevzdání zadání komu');
-        }, 2000);
-    });
-
-    //téma - jaké
-    controller.hears(['(?=.*jak[eéyýo]u*)((?=.*t[eé]ma)*|(?=.*zad[aá]n[ií])*)' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))*'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'téma jaké');
-        }, 2000);
-    });
-
-    //téma - obhájené
-    controller.hears(['(?=.*obh[aá]jen[eéyý])' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))*'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'téma obhájené');
-        }, 2000);
-    });
-
-    //téma - konzultace
-    controller.hears(['(?=.*(konzultac[eií]|konzultovat|probrat))' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'téma konzultace');
-        }, 2000);
-    });
-
-    //téma - schválení
-    controller.hears(['(?=.*(schv[aá]lit|schv[aá]len[ií]|schvaluje))' +
-    '(?=.*(zad[aá]n[ií]m*|diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'téma schválení');
-        }, 2000);
-    });
-
     //zadání - formát
-    controller.hears(['(?=.*(form[aá]t(em)*|vypadat|obsahovat))(?=.*zad[aá]n[ií]m*)' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))*'], 'message_received', function(bot, message) {
+    controller.hears('(?=.*(form[aá]t|vypadat|obsahovat))(?=.*zad[aá]n[ií])', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'zadání formát');
+            bot.reply(message, 'Pro zadání neexistuje žádný formulář, tak ho dostatečně konzultuj se svým vedoucím. Zadání musí obsahovat tyto povinné náležitosti:');
+            setTimeout(function() {
+                bot.reply(message, '❗název práce<br>❗název práce v anglickém jazyce<br>❗jazyk práce<br>❗vedoucí práce' +
+                    '<br>❗autor práce<br>❗zásady pro vypracování práce<br>❗seznam odborné literatury<br>Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
+            }, 2000);
         }, 2000);
     });
-
+    //téma - jaké
+    controller.hears('((?=.*jak[eéyýo])((?=.*t[eé]ma)|(?=.*zad[aá]n[ií]))' +
+        '|(na co|o [cč]em).*(zad[aá]n[ií]|diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Vyučující nevypisují vlastní témata v SISu – je na tobě, abys přišel s nejvíc epic nápadem a zkonzultoval ho s vedoucím oboru.' +
+                ' K obhajobě diplomky můžeš přistoupit nejdříve rok po jejím zadání, tak neotálej. Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
+        }, 2000);
+    });
+    //téma - obhájené
+    controller.hears('(?=.*obh[aá]jen[eéyý])', 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Inspirovat se obhájenými diplomkami můžeš tady 👉 http://bit.ly/stunome_obhajene');
+        }, 2000);
+    });
+    //téma - konzultace, schválení
+    controller.hears('((?=.*(konzultac[eií]|konzultovat|probrat))|(?=.*(schv[aá]lit|schv[aá]len[ií]|schvaluje)))' +
+    '(?=.*(zad[aá]n[ií]|diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Zadání konzultuj se svým vedoucím. Vypracované zadání pak odevzdej vedoucímu oboru a tajemníkovi oboru.' +
+                ' Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
+        }, 2000);
+    });
     //zadání - jazyk práce
-    controller.hears(['(?=.*(jazyk(em)*|jazyce|angli[cč]tin[eě]|anglick[eé]m jazyce))' +
-    '(?=.*(zad[aá]n[ií]m*|diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
+    controller.hears('(?=.*(jazy[(k|ce)]|angli[cč]tin[eě]|anglick[eé]m jazyce))' +
+    '(?=.*(zad[aá]n[ií]|diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'jazyk práce');
+            bot.reply(message, 'Pokud chceš práci psát v jiném než v českém či anglickém jazyce,' +
+                ' konzultuj to předem s tajemníkem oboru a doplň ještě název práce v jazyce práce. Kontakt na Jakuba Fialu najdeš tady 👉 http://bit.ly/stunome_kontakty');
         }, 2000);
     });
-
-    //------------------------------------------------
-    //--------------DIPLOMKA - PRÁCE------------------
-    //------------------------------------------------
-    //odevzdání diplomky - do kdy
-    controller.hears(['(?=.*kdy)(?=.*odevzdat)' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'diplomka do kdy');
-        }, 2000);
-    });
-
-    //odevzdání diplomky - komu
-    controller.hears(['(?=.*(komu|kam|kde))(?=.*odevzdat)' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
-        bot.reply(message, {type: 'typing'});
-        setTimeout(function() {
-            bot.reply(message, 'diplomka komu');
-        }, 2000);
-    });
-
     //obhajoba diplomky
-    controller.hears(['(?=.*(obh[aá]jit|obhajovat|obhajoba))' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
+    controller.hears('(?=.*(obh[aá]jit|obhajo(vat|ba)))' +
+    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'diplomka obhajoba');
+            bot.reply(message, 'K obhajobě diplomky můžeš přistoupit nejdříve rok po jejím zadání, tak neotálej. Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
     });
-
     //vypracování diplomky
-    controller.hears(['(?=.*(form[aá]t(em)*|vypadat|obsahovat|[sš]ablona|vzor(ov[aá])*|p[rř]ipravit))' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
+    controller.hears('(?=.*(form[aá]t|vypadat|obsahovat|[sš]ablona|vzor|p[rř]ipravit))' +
+    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'diplomka obsah');
+            bot.reply(message, 'Formální doporučení pro vypracování, včetně vzorové šablony najdeš tady 👉 http://bit.ly/stunome_diplomka_pravidla');
+            bot.reply(message, 'Stručný popis požadavků na obsah diplomky zde 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
     });
-
     //hodnocení diplomky
-    controller.hears(['(?=.*(o*hodnocen[aiío]|o*hodnot[ií]t*|o*zn[aá]mkovat|o*zn[aá]mkuje|posudek|posuzov[aá]na|posuzuje|klasifikac[ei]|klasifikuje|klasifikov[aá]n[aáií]))' +
-    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
+    controller.hears('(?=.*(hodnocen[aiío]|hodnot[ií]|zn[aá]mkovat|zn[aá]mkuje|posudek|posuzov[aá]na|posuzuje|klasifikac[ei]|klasifikuje|klasifikov[aá]n[aáií]))' +
+    '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'diplomka hodnocení');
+            bot.reply(message, 'Při tvorbě posudků vedoucích, oponentů i konzultantů se používájí hodnotící tabulky,' +
+                ' které najdeš tady 👉 http://bit.ly/stunome_diplomka_hodnoceni');
         }, 2000);
     });
-
-    //------------------------------------------------
-    //-------------DIPLOMKA - FALLBACK----------------
-    //------------------------------------------------
-    //hears diplomka TODO
-    controller.hears('(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))', 'message_received', function(bot, message) {
+    //fallback -> hears diplomka
+    controller.hears('(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
         var thesis = {
             attachments: [
                 {
                     contentType: 'application/vnd.microsoft.card.hero',
                     content: {
-                        title: 'Co potřebuješ vědět?',
+                        title: 'Co ohledně diplomky potřebuješ vědět?',
                         buttons: [
-                            {
-                                type: 'postBack',
-                                title: 'kdy musím odevzdat zadání',
-                                value: 'kdy odevzdat zadani'
-                            },
-                            {
-                                type: 'postBack',
-                                title: 'komu musím odevzdat zadání',
-                                value: 'komu odevzdat zadani'
-                            },
                             {
                                 type: 'postBack',
                                 title: 'jaké můžu mít téma diplomky',
                                 value: 'jake tema diplomka'
+                            },
+                            {
+                                type: 'postBack',
+                                title: 'jak má zadání vypadat',
+                                value: 'format zadani'
+                            },
+                            {
+                                type: 'postBack',
+                                title: 'kdy a komu odevzdat zadání',
+                                value: 'kdy odevzdat zadani'
                             },
                             {
                                 type: 'postBack',
@@ -162,23 +114,13 @@ module.exports = function(controller) {
                             },
                             {
                                 type: 'postBack',
-                                title: 'kdo mi schválí téma diplomky',
-                                value: 'schvalit diplomka'
-                            },
-                            {
-                                type: 'postBack',
                                 title: 'v jakém jazyce psát zadání práce',
                                 value: 'jazyk zadani'
                             },
                             {
                                 type: 'postBack',
-                                title: 'kdy musím odevzdat diplomku',
+                                title: 'kdy a komu odevzdat diplomku',
                                 value: 'kdy odevzdat diplomka'
-                            },
-                            {
-                                type: 'postBack',
-                                title: 'komu musím odevzdat diplomku',
-                                value: 'komu odevzdat diplomka'
                             },
                             {
                                 type: 'postBack',
@@ -188,7 +130,7 @@ module.exports = function(controller) {
                             {
                                 type: 'postBack',
                                 title: 'co musí obsahovat diplomka',
-                                value: 'schvalit diplomka'
+                                value: 'format diplomka'
                             },
                             {
                                 type: 'postBack',
