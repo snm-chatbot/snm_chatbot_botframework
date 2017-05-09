@@ -1,63 +1,38 @@
 module.exports = function(controller) {
-    controller.hears('harmonogram', 'message_received', function(bot, message) {
-
-        var attachment = {
-            'type':'template',
-            'payload':{
-                'template_type':'button',
-                'text':'Jaký harmonogram tě zajímá?',
-                'buttons':[
-                    {
-                        'type':'postback',
-                        'title':'Podrobný harmonogram',
-                        'payload':'harmonodetail',
-                    },
-                    {
-                        'type':'web_url',
-                        'url':'http://novamedia.ff.cuni.cz/studium/rozvrh-harmonogram-semestru/',
-                        'title':'Rozvrh a harmonogram'
-                    },
-                ]
-            },
-        };
-
-        bot.reply(message, {
-            attachment: attachment,
-        });
-
+    //rozvrh
+    controller.hears('rozvrh', 'message_received', function(bot, message) {
+        bot.reply(message, { type: 'typing' });
+        setTimeout(function() {
+            bot.reply(message, 'Here you go! 👉 http://bit.ly/stunome_harmonogram');
+        }, 2000);
     });
-
-    controller.on('facebook_postback', function(bot, message) {
-
-        if (message.payload === 'harmonodetail') {
-            var attachment = {
-                'type':'template',
-                'payload':{
-                    'template_type':'button',
-                    'text':'Asi letošní, co?',
-                    'buttons':[
-                        {
-                            'type':'web_url',
-                            'url':'http://www.ff.cuni.cz/fakulta/predpisy-a-dokumenty/opatreni-dekana/harmonogram/harmonogram-akademickeho-roku-201617/',
-                            'title':'Ano, letošní',
-                        },
-                        {
-                            'type':'web_url',
-                            'url':'http://www.ff.cuni.cz/fakulta/predpisy-a-dokumenty/opatreni-dekana/harmonogram/harmonogram2015-16/',
-                            'title':'Ne ne, loňský',
-                        },
-                        {
-                            'type':'web_url',
-                            'url':'http://www.ff.cuni.cz/fakulta/predpisy-a-dokumenty/opatreni-dekana/harmonogram/',
-                            'title':'Všechny!',
-                        },
-                    ]
-                },
-            };
-
-            bot.reply(message, {
-                attachment: attachment,
-            });
-        }
+    //harmonogram
+    controller.hears('harmonogram', 'message_received', function(bot, message) {
+        var harmonogram = {
+            attachments: [
+                {
+                    contentType: 'application/vnd.microsoft.card.hero',
+                    content: {
+                        title: 'Jaký harmonogram tě zajímá?',
+                        buttons: [
+                            {
+                                type: 'openUrl',
+                                title: 'podrobný harmonogram roku',
+                                value: 'http://www.ff.cuni.cz/fakulta/predpisy-a-dokumenty/opatreni-dekana/harmonogram/'
+                            },
+                            {
+                                type: 'openUrl',
+                                title: 'hlavně rozvrh',
+                                value: 'http://novamedia.ff.cuni.cz/studium/rozvrh-harmonogram-semestru/'
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, harmonogram);
+        }, 2000);
     });
 };
