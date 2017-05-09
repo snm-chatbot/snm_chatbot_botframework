@@ -2,7 +2,7 @@ var giphy = require('giphy-api')();
 
 module.exports = function(controller) {
 
-    controller.hears(['(help|pomoc(t)*)'], 'message_received', function (bot, message) {
+    controller.hears(['(help|pomoc)'], 'message_received', function (bot, message) {
         var skills = {
             attachments: [
                 {
@@ -51,7 +51,9 @@ module.exports = function(controller) {
                 }
             ]
         }
-        bot.reply(message, skills);
+        setTimeout(function() {
+            bot.reply(message, skills);
+        }, 2000);
     });
 
     controller.on('message_received', function(bot, message) {
