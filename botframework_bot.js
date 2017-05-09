@@ -120,6 +120,7 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 require('./skills/basics')(controller);
 
 // SKILLS
+require('./skills/faq')(controller);
 require('./skills/harmonogram')(controller);
 require('./skills/school')(controller);
 require('./skills/prijimaci-rizeni')(controller);
