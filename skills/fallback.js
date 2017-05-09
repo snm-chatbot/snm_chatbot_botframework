@@ -83,10 +83,13 @@ module.exports = function(controller) {
                     }
                 ]
             };
-            bot.reply(message, gif);
-            bot.reply(message, response + ' Zkus něco jiného nebo se podívej, co všechno umím...');
+            bot.reply(message, {type: 'typing'});
             setTimeout(function() {
-                bot.reply(message, help);
+                bot.reply(message, gif);
+                bot.reply(message, response + ' Zkus něco jiného nebo se podívej, co všechno umím...');
+                setTimeout(function() {
+                    bot.reply(message, help);
+                }, 2000);
             }, 2000);
             return false;
         });
