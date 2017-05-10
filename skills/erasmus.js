@@ -13,7 +13,7 @@ module.exports = function(controller) {
         }, 2000);
     });
 
-    controller.hears(['koordin[aá]tora*'], 'message_received', function(bot, message) {
+    controller.hears(['koordin[aá]tor*'], 'message_received', function(bot, message) {
         bot.reply(message, { type: 'typing' });
         setTimeout(function() {
             bot.reply(message, 'Naší koordinátorkou pro studium v zahraničí je PhDr. Helena Lipková, Ph.D., neboj se jí na cokoliv zeptat! Tady je na ní kontakt 👉 http://bit.ly/stunome_koordinatorka_zahranici');
