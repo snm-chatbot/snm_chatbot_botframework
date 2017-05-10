@@ -1,4 +1,10 @@
 var giphy = require('giphy-api')();
+var Wordhop = require('wordhop');
+var apiKey = process.env.WORDHOP_API_KEY; // <= key provided by Wordhop for Slack
+var clientKey = process.env.WORDHOP_CLIENT_KEY; // <= key provided by Wordhop for Slack
+var botPlatform = 'microsoft'; // <= possible values: 'messenger', 'slack', 'microsoft'
+var token = process.env.MESSENGER_PAGE_ACCESS_TOKEN; // <= to see profile image in transcript for Messenger channel, you must include
+var wordhop = Wordhop(apiKey, clientKey, {platform: botPlatform, token:token});
 
 module.exports = function(controller) {
 
@@ -97,6 +103,7 @@ module.exports = function(controller) {
                     }
                 ]
             };
+            wordhop.logUnkownIntent(message);
             bot.reply(message, {type: 'typing'});
             setTimeout(function() {
                 bot.reply(message, gif);

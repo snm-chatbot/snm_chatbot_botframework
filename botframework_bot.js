@@ -70,6 +70,13 @@ var os = require('os');
 var commandLineArgs = require('command-line-args');
 var localtunnel = require('localtunnel');
 
+var Wordhop = require('wordhop');
+var apiKey = process.env.WORDHOP_API_KEY; // <= key provided by Wordhop for Slack
+var clientKey = process.env.WORDHOP_CLIENT_KEY; // <= key provided by Wordhop for Slack
+var botPlatform = 'microsoft'; // <= possible values: 'messenger', 'slack', 'microsoft'
+var token = process.env.MESSENGER_PAGE_ACCESS_TOKEN; // <= to see profile image in transcript for Messenger channel, you must include
+var wordhop = Wordhop(apiKey, clientKey, {platform: botPlatform, token:token});
+
 const ops = commandLineArgs([
       {name: 'lt', alias: 'l', args: 1, description: 'Use localtunnel.me to make your bot available on the web.',
       type: Boolean, defaultValue: false},
@@ -91,6 +98,9 @@ var bot = controller.spawn({
     appId: process.env.app_id,
     appPassword: process.env.app_password
 });
+
+controller.middleware.receive.use(wordhop.receive);
+controller.middleware.send.use(wordhop.send);
 
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
