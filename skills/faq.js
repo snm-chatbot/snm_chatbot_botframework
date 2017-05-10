@@ -23,14 +23,14 @@ module.exports = function(controller) {
                 ' provede studijní oddělení na základě e-mailu nebo dopisu vedoucího práce. Víc najdeš tady 👉 http://bit.ly/stunome_faq');
         }, 2000);
     });
-    //odevzdání diplomky - kdy
-    controller.hears(['(?=.*kdy)(?=.*odevzdat)' +
+    //odevzdání diplomky
+    controller.hears(['(?=.*(kdy|komu|kam|kde))(?=.*odevzdat)' +
     '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'Elektronicky a následně i ve dvou tištěných svázaných shodných kopiích na sekretariátu ÚISK,' +
+            bot.reply(message, 'Elektronicky v SISu a následně i ve dvou tištěných svázaných shodných kopiích na sekretariátu ÚISK,' +
                 ' nejpozději 30 dní před prvním dnem státních závěrečných zkoušek základní součásti.' +
-                ' Termín státnic stanovuje ÚISK a najdeš ho tady 👉 http://bit.ly/stunome_termin_statnic');
+                ' Aktuální termíny pro odevzdání diplomky najdeš tady 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
     });
     //chybějící záznamy v sisu
