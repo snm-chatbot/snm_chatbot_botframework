@@ -282,6 +282,12 @@ module.exports = function(controller) {
         });
     });
 
+    controller.hears(['jak .* funguje[sš]', 'na [cč]em b[eě][zž][ií][sš]?'], 'message_received', function(bot, message) {
+        bot.reply(message, 'Moje jádro je postavený na Botkitu a běží na Heroku. ' +
+            'Tady si s tebou povídám díky Bot Frameworku od Microsoftu a jestli se mi chceš podívat na zoubek, tak' +
+            'mě najdeš i na GitHubu.');
+    });
+
     controller.hears(['uptime'], 'message_received', function(bot, message) {
 
         var hostname = os.hostname();
