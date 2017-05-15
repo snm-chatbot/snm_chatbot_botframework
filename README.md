@@ -21,3 +21,9 @@ Michaela Dvořáková
 Zuzana Dostálová
 
 Martin Janda
+
+## Technické řešení
+
+- [botkit](https://www.botkit.ai/)
+- [heroku](https://www.heroku.com/)
+- [microsoft botframework](https://dev.botframework.com/)
