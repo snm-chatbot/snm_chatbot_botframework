@@ -32,7 +32,35 @@ module.exports = function(controller) {
     controller.hears(['druh[aá]ci', 'druh[aá]k', 'druh[yý] ro[cč]n[ií]k', 'druh[eé]ho ro[cč]n[ií]ku', 'studenti', 'studuje'], 'message_received', function (bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'Mazáci ze starších ročníků najdeš tady 👉 http://bit.ly/stunome_mazaci');
+            bot.reply(message, 'Mazáky ze starších ročníků najdeš tady 👉 http://bit.ly/stunome_mazaci');
+        }, 2000);
+    });
+
+    controller.hears(['josef', '[sš]lerka'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'StuNoMe a Josef jedno jsou. Josef je náčelník našeho kmene. Kdykoliv potřebuješ na cokoliv odpověď, neváhej a zeptej se ho. Nemívá moc času, ale vytrvej. Josef je kámoš. Kontakt zde: http://novamedia.ff.cuni.cz/osoba/josef-slerka/');
+        }, 2000);
+    });
+
+    controller.hears(['tajemn[ií]k', 'tajemn[ií]k oboru', 'tajemn[ií]k stunome', 'jakub fiala', 'fiala jakub', 'fiala'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Tajemník našeho oboru je one & only Mgr. Jakub Fiala.<br>📧 fiala.jakub@gmail.com <br>📱 +420 221 619 910');
+        }, 2000);
+    });
+
+    controller.hears(['rektor'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Naším současným rektorem je Prof. MUDr. Tomáš Zima, DrSc., MBA. Kontakt tady (asi nebudeš potřebovat, hehe): http://www.cuni.cz/UK-126.html');
+        }, 2000);
+    });
+
+    controller.hears(['Marta', 'Kol[aá]rov[aá]', 'Mat[eě]j', 'Van[eě][cč]ek', 'Michaela', 'Slussareff', 'Dita', 'Male[cč]kov[aá]', 'Marie', 'M[aá]ša', 'Dudziakov[aá]', 'V[ií]tek', 'V[ií]t', '[sš]isler'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Info o vyučujících včetně kontaktů najdeš tady: http://novamedia.ff.cuni.cz/lide/vyucujici/');
         }, 2000);
     });
 };
