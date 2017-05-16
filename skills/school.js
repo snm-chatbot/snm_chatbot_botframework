@@ -70,7 +70,7 @@ module.exports = function(controller) {
         }, 2000);
     });
 
-    controller.hears(['poplatky .* studium', 'kolik .*stojí.*studium', 'poplatky', 'cena studia'], 'message_received', function(bot, message) {
+    controller.hears(['poplatky .* studium', 'kolik.*stojí.*studium', 'poplatky', 'cena studia'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
             bot.reply(message, 'Za delší studium platíš 15 000 Kč za každých započatých 6 měsíců studia. Tohle si pohlídej, může to dost zabolet!');

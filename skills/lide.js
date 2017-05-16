@@ -39,7 +39,7 @@ module.exports = function(controller) {
     controller.hears(['josef', '[sš]lerka'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'StuNoMe a Josef jedno jsou. Josef je náčelník našeho kmene. Kdykoliv potřebuješ na cokoliv odpověď, neváhej a zeptej se ho. Nemívá moc času, ale vytrvej. Josef je kámoš. Kontakt zde: http://novamedia.ff.cuni.cz/osoba/josef-slerka/');
+            bot.reply(message, 'Hustej týpek! 💪');
         }, 2000);
     });
 
