@@ -35,7 +35,7 @@ module.exports = function(controller) {
         bot.reply(message, {type: 'typing'});
         var date = new Date();
         setTimeout(function() {
-            bot.reply(message, 'Právě je ' + date.now() + '. Eeeh, teda ' + date.getHours() + ':' + date.getMinutes() + ' ' + date.getDay() + '. ' + date.getMonth() + '. ' + date.getFullYear() + ',');
+            bot.reply(message, 'Právě je ' + Date.now() + '. Eeeh, teda ' + date.getHours() + ':' + date.getMinutes() + ' ' + date.getDay() + '. ' + date.getMonth() + '. ' + date.getFullYear() + ',');
         }, 2000);
     });
 
