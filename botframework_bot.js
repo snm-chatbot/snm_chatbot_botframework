@@ -102,6 +102,12 @@ var bot = controller.spawn({
 controller.middleware.receive.use(wordhop.receive);
 controller.middleware.send.use(wordhop.send);
 
+// Handle forwarding the messages sent by a human through your bot
+wordhop.on('chat response', function (message) {
+    // Send notification as a proactive message
+    bot.say(message);
+});
+
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
         console.log('ONLINE!');

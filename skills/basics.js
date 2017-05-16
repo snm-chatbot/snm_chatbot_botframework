@@ -5,7 +5,7 @@ module.exports = function(controller) {
 
 
     controller.hears(['^ahoj', '^[cč]au', '^zdravim', '^nazdar', '^hoj', '^get started'], 'message_received', function(bot, message) {
-
+        if (message.paused) { return };
         var responses = [
             'Ahoj 👋',
             'Čau 👋',
