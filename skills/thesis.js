@@ -79,7 +79,7 @@ module.exports = function(controller) {
         }, 2000);
     });
     //fallback -> hears diplomka
-    controller.hears('(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
+    controller.hears('(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo]u* pr[aá]c[eií]))', 'message_received', function(bot, message) {
         var thesis = {
             attachments: [
                 {
