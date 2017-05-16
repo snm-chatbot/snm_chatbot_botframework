@@ -63,4 +63,11 @@ module.exports = function(controller) {
             bot.reply(message, 'Info o vyučujících včetně kontaktů najdeš tady: http://novamedia.ff.cuni.cz/lide/vyucujici/');
         }, 2000);
     });
+
+    controller.hears(['^lid[eéi]'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Info o snm lidech najdeš tady: http://novamedia.ff.cuni.cz/lide/');
+        }, 2000);
+    });
 };
