@@ -8,7 +8,7 @@ var wordhop = Wordhop(apiKey, clientKey, {platform: botPlatform, token:token});
 
 module.exports = function(controller) {
 
-    controller.hears(['(help|pomoc)', 'co um[ií][šs]'], 'message_received', function (bot, message) {
+    controller.hears(['(help|pomoc)', 'co um[ií][šs]', '^wtf$'], 'message_received', function (bot, message) {
         var skills = {
             attachments: [
                 {
