@@ -70,7 +70,14 @@ module.exports = function(controller) {
         }, 2000);
     });
 
-    controller.hears(['poplatky .* studium', 'kolik.*stojí.*studium', 'poplatky', 'cena studia'], 'message_received', function(bot, message) {
+    controller.hears(['kolik kredit[uů]', 'kredity'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Celkem musíš nasbírat minimálně 120 kreditů. Pro postup do druhýho ročníku potřebuješ 30, tzn. průměrně 15 za semestr (do třetího jich potřebuejš 60 atd.). To je fakt málo. Kredity budou stačit.');
+        }, 2000);
+    });
+
+    controller.hears(['poplatky .* studium', 'kolik.*stoj[íi].*studium', 'poplatky', 'cena studia'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
             bot.reply(message, 'Za delší studium platíš 15 000 Kč za každých započatých 6 měsíců studia. Tohle si pohlídej, může to dost zabolet!');
@@ -105,10 +112,31 @@ module.exports = function(controller) {
         }, 2000);
     });
 
-    controller.hears(['kolik kredit[uů]', 'kredity'], 'message_received', function(bot, message) {
+    controller.hears(['snmhub', 'hub'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'Celkem musíš nasbírat minimálně 120 kreditů. Pro postup do druhýho ročníku potřebuješ 30, tzn. průměrně 15 za semestr (do třetího jich potřebuejš 60 atd.). To je fakt málo. Kredity budou stačit.');
+            bot.reply(message, '#SNMhub je společná skupina SNM lidí a najdeš ho tady: https://www.facebook.com/groups/1509727309335547/');
+        }, 2000);
+    });
+
+    controller.hears(['skripta', 'materi[aá]ly', 'vypracovan[eé] ot[aá]zky', 'z [cč]eho .* u[cč]it', 'materi[aá]ly ke st[aá]tnic[ií]m', 'na st[aá]tnice'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Pst, hej, ty tam... Chceš nějakej podputlovej matroš ke státnicím? Na, první várka zdarma, na vyzkoušení... Tady máš: https://wikisofia.cz/wiki/Informa%C4%8Dn%C3%AD_studia_a_knihovnictv%C3%AD_(2014-2015)-_st%C3%A1tnicov%C3%A9_okruhy');
+        }, 2000);
+    });
+
+    controller.hears(['studijn[ií] odd[eě]len[ií]', '[uú][rř]edn[ií] hodiny', 'sekretari[aá]t'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Tyhle záležitosti pořešíš v hlavní budově FF, což je ten krásnej historickej barák na Palachově náměstí na Staroměstský s výhledem na Hradčany a milionem super hospod a kaváren v okolí... Ve který máš jenom to studijní :( Info tady: http://www.ff.cuni.cz/fakulta/oddeleni-dekanatu/studijni-oddeleni/');
+        }, 2000);
+    });
+
+    controller.hears(['[cč]eskoslovensko, [cč]eskoslovensko 38-89'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Suprovej projekt Vítka Šislera na kterym, pokud budeš mít štěstí, budeš mít možnost třeba taky spolupracovat! http://cs3889.cz/');
         }, 2000);
     });
 };

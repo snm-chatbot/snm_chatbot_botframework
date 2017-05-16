@@ -22,6 +22,23 @@ module.exports = function(controller) {
         }, 2000);
     });
 
+    controller.hears(['zeman'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Kunda sem, kunda tam.');
+        }, 2000);
+    });
+
+
+
+    controller.hears(['kolik[áa]t[yý]ho je', 'datum', 'kolik je hodin', 'kolik je?'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        var date = new Date();
+        setTimeout(function() {
+            bot.reply(message, 'Právě je ' + date.now() + '. Eeeh, teda ' + date.getHours() + ':' + date.getMinutes() + ' ' + date.getDay() + '. ' + date.getMonth() + '. ' + date.getFullYear() + ',');
+        }, 2000);
+    });
+
     controller.hears(['^giphy (.*)', '^gif (.*)'], 'message_received', function (bot, message) {
         var gif = message.match[1];
         giphy.random(gif, function (err, res) {
