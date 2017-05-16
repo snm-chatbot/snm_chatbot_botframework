@@ -43,7 +43,7 @@ module.exports = function(controller) {
         }, 2000);
     });
 
-    controller.hears(['zmrde', 'dr[zž] hubu', 'naser si', 'kurvo', 'j?di do p[ií][cč]i', 'jdi do hajzlu', 'kokote', 'debile', 'p[ií]pcč]o', 'na[zž]er se hoven', 'polyk[aá][sš]', 'na hovno'], 'message_received', function(bot, message) {
+    controller.hears(['zmrde', 'dr[zž] hubu', 'naser si', 'kurvo', 'j?di do p[ií][cč]i', 'jdi do hajzlu', 'kokote', 'debile', 'p[ií][cč]o', 'na[zž]er se hoven', 'polyk[aá][sš]', 'na hovno'], 'message_received', function(bot, message) {
         giphy.random('fuck you', function (err, res) {
             var gifmessage = 'Tak to fakt nevím, sorry jako.';
             if (res.data.id) {
