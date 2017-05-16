@@ -1,12 +1,6 @@
 var giphy = require('giphy-api')();
 
 module.exports = function(controller) {
-    controller.hears(['kdy .* p[rř]ihl[aá][sš]k[au]'], 'message_received', function(bot, message) {
-      bot.reply(message, {type: 'typing'});
-      setTimeout(function() {
-          bot.reply(message, 'Přihlášku musíš poslat do 31. března! Tik tak ... :-D');
-      }, 2000);
-  });
 
     controller.hears(['kdy .* p[rř]ij[ií]ma[čc]ky'], 'message_received', function(bot, message) {
       bot.reply(message, {type: 'typing'});
@@ -63,6 +57,13 @@ module.exports = function(controller) {
       bot.startConversation(message, question);
   });
 
+    controller.hears(['kdy .* p[rř]ihl[aá][sš]k[au]', 'p[rř]ihl[aá][sš]k[au]'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Přihlášku musíš poslat do 31. března! Tik tak ... :-D');
+        }, 2000);
+    });
+
     controller.hears(['[uú]stn[íi]'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
@@ -96,6 +97,20 @@ module.exports = function(controller) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
             bot.reply(message, 'Komise na ústní část se skládá alespoň ze 3 expertů na problematiku.');
+        }, 2000);
+    });
+
+    controller.hears(['dvouobor', 'dvouborov[eě]', 'jednoobor', 'dvouborov[eé] studium'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Chceš studovat najednou nový média a tibetanistiku? No problem! Má to svoje specifika, mrkni sem: http://novamedia.ff.cuni.cz/o-oboru/jednoobordvouobor/');
+        }, 2000);
+    });
+
+    controller.hears(['kdy byl zalo[zž]en', 'historie stunome', 'historie snm', 'zalo[zž]en obor'], 'message_received', function(bot, message) {
+        bot.reply(message, {type: 'typing'});
+        setTimeout(function() {
+            bot.reply(message, 'Obor Studia nových médií byl založe léta páně 2006, víc tady: http://novamedia.ff.cuni.cz/o-oboru/historie/');
         }, 2000);
     });
 };
