@@ -1,6 +1,6 @@
 module.exports = function(controller) {
     //odevzdání zadání - do kdy, komu
-    controller.hears('(?=.*kdy|komu|kam|kde)(?=.*odevzdat)(?=.*zad[aá]n[ií])', 'message_received', function(bot, message) {
+    controller.hears(['(?=.*kdy|komu|kam|kde)(?=.*odevzdat)(?=.*zad[aá]n[ií])', 'deadline zad[aá]n[ií]', 'zad[aá]n[ií] diplomov[eé]', 'projekt diplomov[eé]'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
             bot.reply(message, 'Vypracované zadání diplomky odevzdej vedoucímu oboru a tajemníkovi oboru vždy k jednomu ze tří termínů:' +
