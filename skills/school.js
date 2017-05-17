@@ -139,4 +139,20 @@ module.exports = function(controller) {
             bot.reply(message, 'Suprovej projekt Vítka Šislera na kterym, pokud budeš mít štěstí, budeš mít možnost třeba taky spolupracovat! http://cs3889.cz/');
         }, 2000);
     });
+
+    controller.hears(['doktor[aá]t','doktorsk[eé]', 'doktorandsk[eé]','doktoran[dt]', 'phd', 'phd.', 'phdr', 'phdr.'], 'message_received', function(bot, message) {
+        bot.reply(message, 'StuNoMe je pouze navazující magisterský obor (zatím). Pokud chceš studovat ještě dál, můžeš si vybrat třeba tady u nás z Fildy, vědátore: http://www.cuni.cz/UK-26.html');
+    });
+
+    controller.hears(['z[aá]pis do', 'zapsat do'], 'message_received', function(bot, message) {
+        bot.reply(message, 'Na tohle bacha. Do prváku se zapisuješ většinou v půlce září, pěkně růčo po staru, to je jasný. ALE! Je nutný se zapsat i do každýho následujícího ročníku! To se dělá elektronicky: nejdřív si musíš nechat v sisu zkontrolovat kredity, jestli jich máš dost. A pak se zapíšeš. Návod máš tady: http://manualy.ff.cuni.cz/index.php/Z%C3%A1pis_do_dal%C5%A1%C3%ADho_ro%C4%8Dn%C3%ADku');
+    });
+
+    controller.hears(['uplatn[eě]n[ií]', 'co ze m[eě] bude'], 'message_received', function(bot, message) {
+        bot.reply(message, 'Nový média je nejvíc sexy obor. Fakt. S touhle školou můžeš dělat uplně cokoliv, od analýzy dat, přes marketing po samotnou vědu. Cokoliv tě baví a zajímá, na to se můžeš už během studia zaměřit. Pro představu mrkni na profil absolventů a absolventek: http://novamedia.ff.cuni.cz/o-oboru/profily-absolventek-absolventu/');
+    });
+
+    controller.hears(['u[cč]ebna', 'u[cč]ebna 2067', '2067'], 'message_received', function(bot, message) {
+        bot.reply(message, 'Jedna z mála výhod umístění oboru do Jinonic je to, že máš všechny hodiny v jedný a tý samý místnosti! A tou je místnost 2067. Je to v budově A (to je ta dál od vchodu, nesnaž se to pochopit) za bufáčem, vyjdeš po schodech nebo vyjedeš výtahem do prvního patra a tam už to najdeš.');
+    });
 };

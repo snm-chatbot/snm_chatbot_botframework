@@ -93,10 +93,10 @@ module.exports = function(controller) {
         }, 2000);
     });
 
-    controller.hears(['kolik .* komis[ei]', 'komis[ei] .* kolik'], 'message_received', function(bot, message) {
+    controller.hears(['kolik .* komis[ei]', 'komis[ei] .* kolik', 'komis[ei]'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'Komise na ústní část se skládá alespoň ze 3 expertů na problematiku.');
+            bot.reply(message, 'Jak u přijímaček, tak u státnic se složení komise lehce mění. Komise na ústní část příjimaček se skládá alespoň ze 3 expertů na problematiku.');
         }, 2000);
     });
 
@@ -112,5 +112,9 @@ module.exports = function(controller) {
         setTimeout(function() {
             bot.reply(message, 'Obor Studia nových médií byl založe léta páně 2006, víc tady: http://novamedia.ff.cuni.cz/o-oboru/historie/');
         }, 2000);
+    });
+
+    controller.hears(['jak se dostat', 'jak se p[rř]ipravit .* p[rř]ij[ií]ma[cč]ky', 'chci na stunome', 'jak .* dostat na stunome', 'kolik lid[ií] (berete|berou|se hl[á]s[ií]|se dostane)'], 'message_received', function(bot, message) {
+        bot.reply(message, 'Tak koukej, každej rok se hlásí cca 150 uchazečů a počet roste. Bere se 25 lidí celkem. To neni moc, ale ani ne uplně málo. Když se pořádně na přijímačky připravíš, máš velkou šanci! Rozhodně nepodceň povinnou četbu. Věnuj hodně času i projektu diplomky, kde ukážeš co tě zajímá a svou motivaci. Rozhodně taky vyzkoušej ukázkový přijímací test: http://snmprijimacky.cz/');
     });
 };

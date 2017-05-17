@@ -46,4 +46,8 @@ module.exports = function(controller) {
             bot.reply(message, 'Ke státním závěrečným zkouškám se obvykle hlásíš před odevzdáním závěrečné práce. Pro termíny sleduj zveřejňované studijním oddělením FF UK a ÚISKem.');
         }, 2000);
     });
+
+    controller.hears(['term[ií]n sszk', 'term[ií]n st[aátnic]', 'term[ií]n st[aá]tnice', 'term[ií]ny sszk', 'term[ií]ny st[áatnic]', 'term[ií]n st[aá]tn[ií] z[aá]v[eě]re[cč]n[]eé zkou[sš]ky'], 'message_received', function(bot, message) {
+        bot.reply(message, 'Termín se dozvíš včas, neboj. Pokud jsi i tak nervózní, sleduj http://www.ff.cuni.cz/studium/bakalarske-a-magisterske-studium/statni-zaverecne-zkousky/');
+    });
 };
