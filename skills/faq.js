@@ -53,7 +53,7 @@ module.exports = function(controller) {
         bot.reply(message, { type: 'typing' });
         setTimeout(function() {
             bot.reply(message, 'Pro postup do dalšího ročníku je nutné dosáhnout určitého počtu kreditů:' +
-                '<br>do 2. ročníku alespoň 30 kreditů<br>do 3. ročníku alespoň 60 kreditů<br>do 4. ročníku alespoň 90 kreditů<br>do 5. ročníku alespoň 120 kreditů' +
+                '<br>do 2. ročníku alespoň 40 kreditů<br>do 3. ročníku alespoň 60 kreditů<br>do 4. ročníku alespoň 90 kreditů<br>do 5. ročníku alespoň 120 kreditů' +
                 '<br>Víc najdeš tady 👉 http://bit.ly/stunome_faq');
         }, 2000);
     });
