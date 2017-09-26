@@ -24,7 +24,7 @@ module.exports = function(controller) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
             bot.reply(message, 'Vyučující nevypisují vlastní témata v SISu – je na tobě, abys přišel s nejvíc epic nápadem a zkonzultoval ho s vedoucím oboru.' +
-                ' K obhajobě diplomky můžeš přistoupit nejdříve rok po jejím zadání, tak neotálej. Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
+                ' K obhajobě diplomky můžeš přistoupit nejdříve 6 měsíců po jejím zadání, tak neotálej. Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
     });
     //téma - obhájené
@@ -57,7 +57,7 @@ module.exports = function(controller) {
     '(?=.*(diplomk[aouy]|diplomce|diplomov[aáéo] pr[aá]c[eií]))', 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'K obhajobě diplomky můžeš přistoupit nejdříve rok po jejím zadání, tak neotálej. Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
+            bot.reply(message, 'K obhajobě diplomky můžeš přistoupit nejdříve 6 měsíců po jejím zadání, tak neotálej. Víc najdeš tady 👉 http://bit.ly/stunome_diplomka');
         }, 2000);
     });
     //vypracování diplomky
