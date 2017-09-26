@@ -73,7 +73,7 @@ module.exports = function(controller) {
     controller.hears(['kolik kredit[uů]', 'kredity'], 'message_received', function(bot, message) {
         bot.reply(message, {type: 'typing'});
         setTimeout(function() {
-            bot.reply(message, 'Celkem musíš nasbírat minimálně 120 kreditů. Pro postup do druhýho ročníku potřebuješ 40, do třetího jich potřebuješ 60, pak 90 a na páťáku musíš mít celých 120. To je fakt málo. Kredity budou stačit.');
+            bot.reply(message, 'Celkem musíš nasbírat minimálně 120 kreditů. Pro postup do druhýho ročníku potřebuješ 40, do třetího jich potřebuješ 60, pak 90 a do páťáku musíš mít celých 120. To je fakt málo. Kredity budou stačit.');
         }, 2000);
     });
 
